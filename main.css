@@ -1,0 +1,726 @@
+/* ===== CSS ЗМІННІ ===== */
+:root {
+    /* Кольори */
+    --primary-red: #a00000;
+    --accent-red: #ff0000;
+    --dark-red: #8b0000;
+    --light-red: #ffbbbb;
+    --text-color: #f2f2f2;
+    --dark-bg: rgba(0, 0, 0, 0.85);
+    --content-bg: rgba(0, 0, 0, 0.7);
+    --table-bg: rgba(20, 20, 20, 0.9);
+    --footer-bg: rgba(10, 10, 10, 0.9);
+
+    /* Тіні та ефекти */
+    --shadow-sm: 0 2px 10px rgba(0, 0, 0, 0.7);
+    --shadow-md: 0 0 15px rgba(0, 0, 0, 0.5);
+    --shadow-lg: 0 0 25px rgba(0, 0, 0, 0.7);
+    --glow-red: 0px 0px 10px rgba(255, 0, 0, 0.7);
+    --glow-red-hover: 0px 0px 20px rgba(255, 0, 0, 1);
+
+    /* Розміри */
+    --border-radius: 15px;
+    --header-height: 85px; /* Збільшено */
+    --content-width: 85%;
+
+    /* Анімації */
+    --transition: all 0.3s ease;
+    --transition-slow: all 0.4s ease;
+}
+
+/* ===== ШРИФТИ ===== */
+@font-face {
+    font-family: 'Encient German Gothic';
+    src: url('../fonts/Germgoth.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+/* ===== БАЗОВІ СТИЛІ ===== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+    font-size: 16px;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    background: url("../Зображення/GoQoYGXWQAABsI9.jpg") no-repeat center center fixed;
+    background-size: cover;
+    color: var(--text-color);
+    font-family: 'Encient German Gothic', "Times New Roman", Georgia, serif;
+    text-align: center;
+    letter-spacing: 0.05em;
+    line-height: 1.6;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.7);
+    min-height: 100vh;
+    overflow-x: hidden;
+}
+/* ===== ФОН СТОРІНКИ ===== */
+.background-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    overflow: hidden;
+}
+
+.background-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    filter: brightness(0.7) contrast(1.1);
+}
+
+.background-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+        45deg,
+        rgba(0, 0, 0, 0.6) 0%,
+        rgba(160, 0, 0, 0.2) 50%,
+        rgba(0, 0, 0, 0.6) 100%
+    );
+}
+
+/* ===== БАЗОВІ СТИЛІ ===== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+    font-size: 16px;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    color: var(--text-color);
+    font-family: 'Encient German Gothic', "Times New Roman", Georgia, serif;
+    text-align: center;
+    letter-spacing: 0.05em;
+    line-height: 1.6;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.7);
+    min-height: 100vh;
+    overflow-x: hidden;
+    /* Видаляємо старий background з body */
+}
+
+/* ... решта вашого CSS залишається без змін ... */
+
+/* ===== ПОКРАЩЕНА ШАПКА ===== */
+.header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1rem 3rem;
+    height: var(--header-height);
+    z-index: 1000;
+    box-shadow:
+        0 4px 20px rgba(0, 0, 0, 0.9),
+        0 2px 10px rgba(255, 0, 0, 0.3);
+    transition: var(--transition-slow);
+
+    /* Більш контрастний чорний фон */
+    background:
+        linear-gradient(135deg,
+            rgba(0, 0, 0, 0.98) 0%,
+            rgba(10, 0, 0, 0.95) 50%,
+            rgba(0, 0, 0, 0.98) 100%),
+        url("https://www.transparenttextures.com/patterns/black-linen.png");
+    background-size: cover, 200px 200px;
+    background-blend-mode: normal, overlay;
+
+    /* Зубчастий край */
+    clip-path: polygon(
+        0 0, 100% 0, 100% 85%,
+        95% 90%, 90% 85%, 85% 90%, 80% 85%, 75% 90%,
+        70% 85%, 65% 90%, 60% 85%, 55% 90%, 50% 85%,
+        45% 90%, 40% 85%, 35% 90%, 30% 85%, 25% 90%,
+        20% 85%, 15% 90%, 10% 85%, 5% 90%, 0 85%
+    );
+
+    /* Додатковий контраст */
+    border-bottom: 2px solid #000000;
+    backdrop-filter: blur(5px);
+}
+
+.header.hidden {
+    top: calc(-1 * var(--header-height));
+}
+
+/* Лого в шапці - збільшено */
+.header__logo {
+    height: 4rem; /* Збільшено з 3.5rem */
+    border-radius: 0.625rem;
+    transition: var(--transition);
+    filter:
+        drop-shadow(0 0 8px rgba(255, 0, 0, 0.6))
+        drop-shadow(0 0 4px rgba(0, 0, 0, 0.8));
+    border: 1px solid #000000;
+}
+
+.header__logo:hover {
+    transform: scale(1.05);
+    filter:
+        drop-shadow(0 0 12px rgba(255, 0, 0, 0.8))
+        drop-shadow(0 0 6px rgba(0, 0, 0, 0.9));
+}
+
+/* Навігаційні посилання - збільшено та додано контрасту */
+.header__nav {
+    display: flex;
+    gap: 1.5rem;
+}
+
+.header__link {
+    text-decoration: none;
+    color: var(--text-color);
+    font-weight: bold;
+    font-size: 1.2rem; /* Збільшено з 1.1rem */
+    padding: 0.9rem 1.8rem; /* Збільшено padding */
+    background:
+        linear-gradient(135deg,
+            rgba(160, 0, 0, 0.9) 0%,
+            rgba(255, 0, 0, 0.8) 50%,
+            rgba(160, 0, 0, 0.9) 100%),
+        radial-gradient(circle at center,
+            rgba(0, 0, 0, 0.6) 0%,
+            transparent 70%);
+    border-radius: 0.625rem;
+    box-shadow:
+        0px 0px 12px rgba(255, 0, 0, 0.7),
+        inset 0 1px 0 rgba(255, 255, 255, 0.2),
+        inset 0 -2px 0 rgba(0, 0, 0, 0.8),
+        0 2px 4px rgba(0, 0, 0, 0.6);
+    transition: var(--transition);
+    font-family: inherit;
+    position: relative;
+    overflow: hidden;
+    border: 1px solid #000000;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8);
+}
+
+.header__link::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(255, 255, 255, 0.15),
+        transparent
+    );
+    transition: left 0.5s ease;
+}
+
+.header__link:hover::before {
+    left: 100%;
+}
+
+.header__link:hover {
+    background:
+        linear-gradient(135deg,
+            rgba(255, 0, 0, 0.9) 0%,
+            rgba(160, 0, 0, 0.8) 50%,
+            rgba(255, 0, 0, 0.9) 100%),
+        radial-gradient(circle at center,
+            rgba(0, 0, 0, 0.4) 0%,
+            transparent 70%);
+    transform: translateY(-2px);
+    box-shadow:
+        0px 0px 20px rgba(255, 0, 0, 1),
+        inset 0 1px 0 rgba(255, 255, 255, 0.3),
+        inset 0 -2px 0 rgba(0, 0, 0, 0.9),
+        0 4px 8px rgba(0, 0, 0, 0.8);
+    color: #ffffff;
+}
+
+/* ===== ОСНОВНИЙ КОНТЕНТ ===== */
+.main-content {
+    width: 100%;
+    margin: 0 auto;
+    padding: calc(var(--header-height) + 2rem) 0 2rem;
+}
+
+.windows-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2rem;
+    justify-content: center;
+    align-items: flex-start;
+    width: min(90%, 1200px);
+    margin: 0 auto;
+    padding: 0 1rem;
+}
+
+/* ===== КОЛОНКИ ===== */
+.column {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    flex: 1 1 400px;
+    max-width: min(500px, 100%);
+}
+
+.left-column {
+    margin-top: 1rem;
+}
+
+.right-column {
+    margin-top: 1rem;
+}
+
+/* ===== ВІКНА/КАРТКИ ===== */
+.window {
+    background: rgba(0, 0, 0, 0.75);
+    padding: 2rem;
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow-lg);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    transition: var(--transition);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    position: relative;
+    overflow: hidden;
+}
+
+.window::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, var(--primary-red), var(--accent-red));
+}
+
+.window:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.9);
+}
+
+/* Текстове вікно */
+.text-window {
+    background: rgba(0, 0, 0, 0.8);
+    backdrop-filter: blur(10px);
+}
+
+/* Вікно з відео */
+.video-window {
+    background: rgba(10, 10, 10, 0.85);
+}
+
+.video-container {
+    width: 100%;
+    position: relative;
+}
+
+/* Вікно з таблицею */
+.table-window {
+    background: rgba(15, 15, 15, 0.9);
+}
+
+/* ===== ТИПОГРАФІКА ===== */
+.heading-primary {
+    font-weight: bold;
+    text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.8);
+    font-family: 'Encient German Gothic', serif;
+    letter-spacing: 0.08em;
+    line-height: 1.3;
+    font-size: 2.75rem;
+    margin-bottom: 1.5rem;
+    color: var(--text-color);
+    background: linear-gradient(135deg, #fff, var(--light-red));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.heading-secondary {
+    font-weight: bold;
+    text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.8);
+    font-family: 'Encient German Gothic', serif;
+    letter-spacing: 0.08em;
+    line-height: 1.3;
+    font-size: 2rem;
+    margin: 1rem 0;
+    color: var(--light-red);
+    position: relative;
+}
+
+.heading-secondary::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 50px;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--accent-red), transparent);
+    transition: width 0.3s ease;
+}
+
+.heading-secondary:hover::after {
+    width: 100px;
+}
+
+.heading-tertiary {
+    font-size: 1.5rem;
+    color: var(--light-red);
+    margin-bottom: 1rem;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.8);
+}
+
+.paragraph {
+    font-size: 1.2rem;
+    line-height: 1.7;
+    text-align: justify;
+    margin-bottom: 1rem;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.6);
+    color: #e8e8e8;
+}
+
+/* ===== ВІДЕО ===== */
+.video-iframe {
+    width: 100%;
+    height: min(50vw, 480px);
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow-lg);
+    border: 2px solid rgba(255, 255, 255, 0.1);
+    transition: var(--transition);
+}
+
+.video-iframe:hover {
+    border-color: rgba(255, 0, 0, 0.3);
+    box-shadow: 0 0 30px rgba(255, 0, 0, 0.3);
+}
+
+/* ===== ТАБЛИЦЯ ===== */
+.table-container {
+    width: 100%;
+    background: var(--table-bg);
+    border-radius: var(--border-radius);
+    overflow: hidden;
+    box-shadow: var(--shadow-md);
+}
+
+.events-table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+    font-size: 1rem;
+}
+
+.events-table th,
+.events-table td {
+    padding: 1rem;
+    color: var(--text-color);
+    text-align: center;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    transition: var(--transition);
+}
+
+.events-table th {
+    background: linear-gradient(135deg, var(--primary-red), var(--accent-red));
+    font-size: 1.1rem;
+    font-weight: bold;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8);
+    position: relative;
+    overflow: hidden;
+}
+
+.events-table th::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.5), transparent);
+}
+
+.events-table tr:nth-child(even) {
+    background: rgba(255, 255, 255, 0.03);
+}
+
+.events-table tr:hover {
+    background: rgba(255, 0, 0, 0.15);
+    cursor: pointer;
+    transform: scale(1.02);
+}
+
+.events-table tr:hover td {
+    color: #fff;
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+}
+
+/* ===== ДОДАТКОВИЙ КОНТЕНТ ===== */
+.additional-content {
+    width: min(90%, 1200px);
+    margin: 3rem auto 0;
+    padding: 2rem;
+}
+
+.features-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+    margin-top: 2rem;
+}
+
+.feature-card {
+    background: rgba(0, 0, 0, 0.7);
+    padding: 2rem;
+    border-radius: var(--border-radius);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    transition: var(--transition);
+    position: relative;
+    overflow: hidden;
+}
+
+.feature-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, var(--primary-red), var(--accent-red));
+}
+
+.feature-card:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-lg);
+}
+
+.feature-card h3 {
+    color: var(--light-red);
+    margin-bottom: 1rem;
+    font-size: 1.3rem;
+}
+
+.feature-card p {
+    text-align: center;
+    color: #e8e8e8;
+}
+
+/* ===== ПІДВАЛ ===== */
+.footer {
+    background: var(--footer-bg);
+    padding: 2rem;
+    margin-top: 3rem;
+    border-top: 3px solid var(--primary-red);
+}
+
+.footer-content {
+    width: min(90%, 1200px);
+    margin: 0 auto;
+    text-align: center;
+}
+
+.footer-content p {
+    margin-bottom: 0.5rem;
+    color: #ccc;
+}
+
+/* ===== АНІМАЦІЇ ===== */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.fade-in {
+    animation: fadeIn 0.8s ease-out;
+}
+
+.window {
+    opacity: 0;
+    transform: translateY(50px);
+    transition: all 0.8s ease;
+}
+
+.window.in-view {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* ===== АДАПТИВНІСТЬ ===== */
+@media (max-width: 768px) {
+    .header {
+        padding: 0.8rem 1rem;
+        clip-path: none;
+        flex-direction: column;
+        height: auto;
+        min-height: 75px;
+        gap: 0.8rem;
+    }
+
+    .header__logo {
+        height: 3.2rem;
+    }
+
+    .header__nav {
+        gap: 0.8rem;
+    }
+
+    .header__link {
+        font-size: 1rem;
+        padding: 0.7rem 1.2rem;
+    }
+
+    .main-content {
+        padding: 100px 0 1rem;
+    }
+
+    .windows-container {
+        margin-top: 0;
+        padding: 0 0.5rem;
+        gap: 1.5rem;
+    }
+
+    .column {
+        flex: 1 1 100%;
+        margin-top: 0;
+    }
+
+    .window {
+        padding: 1.5rem;
+    }
+
+    .paragraph {
+        text-align: left;
+        font-size: 1.1rem;
+    }
+
+    .heading-primary {
+        font-size: 2rem;
+    }
+
+    .heading-secondary {
+        font-size: 1.5rem;
+    }
+
+    .video-iframe {
+        height: 300px;
+    }
+
+    .events-table {
+        font-size: 0.9rem;
+    }
+
+    .events-table th,
+    .events-table td {
+        padding: 0.75rem 0.5rem;
+    }
+
+    .features-grid {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .header {
+        padding: 0.6rem;
+        min-height: 70px;
+    }
+
+    .header__logo {
+        height: 2.8rem;
+    }
+
+    .header__link {
+        font-size: 0.9rem;
+        padding: 0.6rem 1rem;
+    }
+
+    .header__nav {
+        gap: 0.5rem;
+    }
+
+    .main-content {
+        padding: 120px 0 1rem;
+    }
+
+    .window {
+        padding: 1rem;
+    }
+
+    .heading-primary {
+        font-size: 1.8rem;
+    }
+
+    .heading-secondary {
+        font-size: 1.3rem;
+    }
+
+    .paragraph {
+        font-size: 1rem;
+    }
+
+    .video-iframe {
+        height: 250px;
+    }
+}
+
+/* ===== ДОДАТКОВІ ЕФЕКТИ ===== */
+/* Покращений скролбар */
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: rgba(0, 0, 0, 0.3);
+}
+
+::-webkit-scrollbar-thumb {
+    background: linear-gradient(var(--primary-red), var(--accent-red));
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(var(--accent-red), var(--primary-red));
+}
+
+/* Вибір тексту */
+::selection {
+    background: rgba(255, 0, 0, 0.3);
+    color: white;
+}
+
+::-moz-selection {
+    background: rgba(255, 0, 0, 0.3);
+    color: white;
+}
